@@ -1,0 +1,6 @@
+baudrate=115200
+bootcmd=nand read 0 0x200000 0x200000; go 0
+bootdelay=1
+stderr=serial
+stdin=serial
+stdout=serial

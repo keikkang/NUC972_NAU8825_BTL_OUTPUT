@@ -1,0 +1,9 @@
+.\obj\main.o: ..\main.c
+.\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\obj\main.o: ..\..\Driver\Include\nuc970.h
+.\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\obj\main.o: ..\..\Driver\Include\sys.h
+.\obj\main.o: ..\..\Driver\Include\i2s.h
+.\obj\main.o: ..\..\Driver\Include\i2c.h
+.\obj\main.o: ..\here_mono.dat

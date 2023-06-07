@@ -1,0 +1,105 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;/******************************************************
+                       *********************
+    2 00000000         ; *                                                     
+                                           *
+    3 00000000         ; * SPDX-License-Identifier: Apache-2.0                 
+                                           *
+    4 00000000         ; * Copyright (c) 2015 Nuvoton Technology. All rights re
+                       served.             *
+    5 00000000         ; *                                                     
+                                           *
+    6 00000000         ; ******************************************************
+                       *********************/
+    7 00000000         
+    8 00000000         
+    9 00000000                 AREA             SYS_INIT, CODE, READONLY
+   10 00000000         
+   11 00000000                 EXPORT           sysSetupCP15
+   12 00000000                 EXPORT           sys_flush_and_clean_dcache
+   13 00000000         
+   14 00000000         sysSetupCP15
+   15 00000000         
+   16 00000000 E1A01000        MOV              r1, r0      ; _mmuSectionTable
+   17 00000004 EE021F10        MCR              p15, 0, r1, c2, c0, 0 ; write t
+                                                            ranslation table ba
+                                                            se register c2
+   18 00000008         
+   19 00000008 E3A01101        MOV              r1, #0x40000000
+   20 0000000C EE031F10        MCR              p15, 0, r1, c3, c0, 0 ; domain 
+                                                            access control regi
+                                                            ster c3
+   21 00000010         
+   22 00000010 EE111F10        MRC              p15, 0, r1, c1, c0, 0 ; read co
+                                                            ntrol register c1
+   23 00000014 E3811A01        ORR              r1, r1, #0x1000 ; set enable ic
+                                                            ache bit
+   24 00000018 E3811005        ORR              r1, r1, #0x5 ; set enable dcach
+                                                            e and MMU bits
+   25 0000001C EE011F10        MCR              p15, 0, r1, c1, c0, 0 ; write c
+                                                            ontrol regiser c1
+   26 00000020         
+   27 00000020 E12FFF1E        BX               r14
+   28 00000024         
+   29 00000024         sys_flush_and_clean_dcache
+   30 00000024         
+   31 00000024         tci_loop
+   32 00000024 EE17FF7E        MRC              p15, 0, r15, c7, c14, 3 ; test 
+                                                            clean and invalidat
+                                                            e
+   33 00000028 1AFFFFFD        BNE              tci_loop
+   34 0000002C         
+   35 0000002C E12FFF1E        BX               r14
+   36 00000030         
+   37 00000030         
+   38 00000030                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=ARM926EJ-S --apcs=inter
+work --depend=.\obj\sys_nuc970.d -o.\obj\sys_nuc970.o -IC:\Keil_v5\ARM\RV31\INC
+ -IC:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\INC\Toshiba --predefine="__UVI
+SION_VERSION SETA 527" --list=.\lst\sys_nuc970.lst ..\..\Driver\Source\sys_nuc9
+70.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+SYS_INIT 00000000
+
+Symbol: SYS_INIT
+   Definitions
+      At line 9 in file ..\..\Driver\Source\sys_nuc970.s
+   Uses
+      None
+Comment: SYS_INIT unused
+sysSetupCP15 00000000
+
+Symbol: sysSetupCP15
+   Definitions
+      At line 14 in file ..\..\Driver\Source\sys_nuc970.s
+   Uses
+      At line 11 in file ..\..\Driver\Source\sys_nuc970.s
+Comment: sysSetupCP15 used once
+sys_flush_and_clean_dcache 00000024
+
+Symbol: sys_flush_and_clean_dcache
+   Definitions
+      At line 29 in file ..\..\Driver\Source\sys_nuc970.s
+   Uses
+      At line 12 in file ..\..\Driver\Source\sys_nuc970.s
+Comment: sys_flush_and_clean_dcache used once
+tci_loop 00000024
+
+Symbol: tci_loop
+   Definitions
+      At line 31 in file ..\..\Driver\Source\sys_nuc970.s
+   Uses
+      At line 33 in file ..\..\Driver\Source\sys_nuc970.s
+Comment: tci_loop used once
+4 symbols
+335 symbols in table
